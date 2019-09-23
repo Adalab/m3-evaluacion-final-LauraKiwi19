@@ -1,21 +1,37 @@
 import React from "react";
-
+import { Link } from "react-router-dom"
 
 const CharacterDetail = props => {
 
-    if (props.character === undefined) {
+    console.log(props)
+    const characterId = parseInt(props.routerProps.match.params.characterId)
+    const character = props.characters.filter(character => character.id === characterId);
+
+    if (props.characters === undefined) {
         return <h1>Loading</h1>
     }
-    console.log(props.character.name)
+    console.log(`And again`, props)
+    console.log(props.characters[0])
+
+    if (character[0]) {
+        return (
+            < div >
+                <img src={character[0].image} alt={character[0].name} />
+                <h1>{character[0].name}</h1>
+                <h3>Status: {character[0].status}</h3>
+                <h3>Species: {character[0].species}</h3>
+                <h3>Origin: {character[0].origin.name}</h3>
+                <h3>Episodes: {character[0].episode.length}</h3>
+                <Link to="/">Volver al listado</Link>
+
+            </div >
+        )
+    }
     return (
-        <div>
-            <h1>Nombre: {props.character.name}</h1>
-            <h3>Status: {props.character.status}</h3>
-            <h3>Species: {props.character.species}</h3>
-            <h3>Origin: {props.character.origin.name}</h3>
-            <h3>Episodes: {props.character.episode.length}</h3>
-        </div>
+        <p></p>
     )
+
 }
+
 
 export default CharacterDetail

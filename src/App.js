@@ -36,9 +36,24 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <Filter handleInputFilter={this.handleInputFilter} />
-        <CharacterList inputValue={this.state.inputValue} characters={this.state.characters} />
-        <CharacterDetail character={this.state.characters[0]} />
+        <Switch>
+          <Route exact path="/" render={() => {
+            return (
+              <Filter
+                handleInputFilter={this.handleInputFilter} /> ,
+              <CharacterList
+                inputValue={this.state.inputValue}
+                characters={this.state.characters} />
+            );
+          }} />
+          <Route path="/character/:characterId" render={routerProps => {
+            return (
+              <CharacterDetail routerProps={routerProps} characters={this.state.characters} />
+            )
+          }} />
+        </Switch>
+
+
       </div>
     )
   }
