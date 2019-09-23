@@ -7,12 +7,6 @@ const CharacterDetail = props => {
     const characterId = parseInt(props.routerProps.match.params.characterId)
     const character = props.characters.filter(character => character.id === characterId);
 
-    if (props.characters === undefined) {
-        return <h1>Loading</h1>
-    }
-    console.log(`And again`, props)
-    console.log(props.characters[0])
-
     if (character[0]) {
         return (
             < div >
@@ -26,12 +20,15 @@ const CharacterDetail = props => {
 
             </div >
         )
-    }
-    return (
-        <p></p>
-    )
+    } else {
+        return (<p> Cargando</p >)
+    };
 
-}
+};
+
+
+
+
 
 
 export default CharacterDetail
