@@ -1,8 +1,10 @@
 import React from 'react';
+import { Route, Switch } from "react-router-dom"
 import './App.css';
 import getData from "./services/getData"
 import CharacterList from "./components/CharacterList"
 import Filter from "./components/Filter"
+import CharacterDetail from "./components/CharacterDetail"
 
 
 class App extends React.Component {
@@ -36,10 +38,10 @@ class App extends React.Component {
       <div className="container">
         <Filter handleInputFilter={this.handleInputFilter} />
         <CharacterList inputValue={this.state.inputValue} characters={this.state.characters} />
+        <CharacterDetail character={this.state.characters[0]} />
       </div>
     )
   }
 }
-
 
 export default App;

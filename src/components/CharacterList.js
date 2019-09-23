@@ -3,6 +3,7 @@ import CharacterCard from "./CharacterCard"
 
 
 const CharacterList = (props) => {
+    console.log(props)
     return (
         <ul>
             {props.characters
