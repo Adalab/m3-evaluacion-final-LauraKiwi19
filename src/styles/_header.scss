@@ -1,0 +1,7 @@
+.header{
+    display: flex;
+    justify-content: center;
+    &__image{
+        transform: scale(0.5)
+    }
+}

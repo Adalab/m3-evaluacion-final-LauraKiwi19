@@ -1,10 +1,11 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom"
-import './App.css';
+import './styles/App.scss';
 import getData from "./services/getData"
 import CharacterList from "./components/CharacterList"
 import Filter from "./components/Filter"
 import CharacterDetail from "./components/CharacterDetail"
+import Header from "./components/Header"
 
 
 class App extends React.Component {
@@ -15,6 +16,8 @@ class App extends React.Component {
       inputValue: ""
     }
     this.handleInputFilter = this.handleInputFilter.bind(this);
+    this.renderHomePage = this.renderHomePage.bind(this);
+    this.renderDetail = this.renderDetail.bind(this);
   }
 
   componentDidMount() {
@@ -33,27 +36,39 @@ class App extends React.Component {
 
   }
 
+  renderHomePage() {
+    return (
+      <div className="container__list">
+        <Header />
+        <Filter
+          handleInputFilter={this.handleInputFilter} />
+        <CharacterList
+          inputValue={this.state.inputValue}
+          characters={this.state.characters} />
+      </div>
+    )
+  }
+
+  renderDetail(routerProps) {
+    const selectedId = parseInt(routerProps.match.params.characterId)
+    let chosenCharacter
+    for (const character of this.state.characters) {
+      if (character.id === selectedId) {
+        chosenCharacter = character
+      }
+    }
+    return (
+      <CharacterDetail character={chosenCharacter} />
+    )
+  }
+
   render() {
     return (
       <div className="container">
         <Switch>
-          <Route exact path="/" render={() => {
-            return (
-              <Filter
-                handleInputFilter={this.handleInputFilter} /> ,
-              <CharacterList
-                inputValue={this.state.inputValue}
-                characters={this.state.characters} />
-            );
-          }} />
-          <Route path="/character/:characterId" render={routerProps => {
-            return (
-              <CharacterDetail routerProps={routerProps} characters={this.state.characters} />
-            )
-          }} />
+          <Route exact path="/" render={this.renderHomePage} />
+          <Route path="/character/:characterId" render={this.renderDetail} />
         </Switch>
-
-
       </div>
     )
   }
