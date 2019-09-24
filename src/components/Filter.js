@@ -1,10 +1,11 @@
 import React from "react"
+import "../styles/_filter.scss"
 
 
 const Filter = (props) => {
     return (
         <div>
-            <input type="text" onChange={props.handleInputFilter}></input>
+            <input className="filter-input" type="text" onChange={props.handleInputFilter}></input>
         </div>
     )
 }

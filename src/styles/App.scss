@@ -4,6 +4,8 @@
     width:100%;
     color: white;
 &__list{
+    background-color: black;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
