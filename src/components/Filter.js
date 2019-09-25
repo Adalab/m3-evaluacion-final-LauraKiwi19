@@ -7,12 +7,9 @@ const Filter = (props) => {
         <div>
             <label>Episodes</label>
             <select onChange={props.handleEpisodes}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="30">30</option>
+                <option value="más de 1">más de 1</option>
+                <option value="más de 3">más de 3</option>
+                <option value="más de 10">más de 10</option>
             </select>
             <label>Status</label>
             <select onChange={props.handleStatus}>
